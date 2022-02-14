@@ -78,3 +78,15 @@ Intentad que el tiempo máximo de ejecución no supere los 10
 segundos. El script debe funcionar usando la invocación: ./run.sh
 
 	* Para alcanzar las 7·3=21 líneas en ocasiones se pierde eficiencia en el programa.
+
+
+INSTUCCIONES PARA DOCKER
+
+Ejecutar en el terminal de Linux los siguientes comandos:
+
+	docker pull dasan1q2w/covid_data
+	docker run -it dasan1q2w/covid_data bash
+
+Una vez dentro del contenedor, ejecutar:
+
+ 	./run.sh

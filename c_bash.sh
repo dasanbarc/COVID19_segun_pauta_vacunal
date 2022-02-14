@@ -13,10 +13,10 @@ echo -e "   - Otoño:" $(cat <(echo $d_json) | jq -c '[.[] | select(."AÑO"==202
 echo -e "   - Invierno:" $(cat <(echo $d_json) | jq -c '[.[] | select(."AÑO"==2021) | select([."MES"] | inside([12, 1, 2])) | .RECUENTO] | reduce .[] as $rec(0; .+$rec)')
 
 echo -ne "\n         * Verificado con bucle for y awk:"
-echo -ne " Primavera" $(a=(); for i in $(awk -F, '{if ($4==3 || $4==4 || $4==5) print $8}' $1); do a+=($i); done; echo $(($(echo ${a[*]} | sed 's/ /+/g'))))";"
-echo -ne " Verano" $(a=(); for i in $(awk -F, '{if ($4==6 || $4==7 || $4==8) print $8}' $1); do a+=($i); done; echo $(($(echo ${a[*]} | sed 's/ /+/g'))))";"
-echo -ne " Otoño" $(a=(); for i in $(awk -F, '{if ($4==9 || $4==10 || $4==11) print $8}' $1); do a+=($i); done; echo $(($(echo ${a[*]} | sed 's/ /+/g'))))";"
-echo -e " Invierno" $(a=(); for i in $(awk -F, '{if ($4==12 || $4==1 || $4==2) print $8}' $1); do a+=($i); done; echo $(($(echo ${a[*]} | sed 's/ /+/g'))))"."
+echo -ne " Primavera" $(a=(); for i in $(awk -F, '{if (($4==3 || $4==4 || $4==5) && $5==2021) print $8}' $1); do a+=($i); done; echo $(($(echo ${a[*]} | sed 's/ /+/g'))))";"
+echo -ne " Verano" $(a=(); for i in $(awk -F, '{if (($4==6 || $4==7 || $4==8) && $5==2021) print $8}' $1); do a+=($i); done; echo $(($(echo ${a[*]} | sed 's/ /+/g'))))";"
+echo -ne " Otoño" $(a=(); for i in $(awk -F, '{if (($4==9 || $4==10 || $4==11) && $5==2021) print $8}' $1); do a+=($i); done; echo $(($(echo ${a[*]} | sed 's/ /+/g'))))";"
+echo -e " Invierno" $(a=(); for i in $(awk -F, '{if (($4==12 || $4==1 || $4==2) && $5==2021) print $8}' $1); do a+=($i); done; echo $(($(echo ${a[*]} | sed 's/ /+/g'))))"."
 
 OLDIFS=$IFS
 IFS=","
